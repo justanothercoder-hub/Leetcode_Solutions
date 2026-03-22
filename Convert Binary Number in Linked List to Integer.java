@@ -1,13 +1,3 @@
-/**
- * Definition for singly-linked list.
- * public class ListNode {
- *     int val;
- *     ListNode next;
- *     ListNode() {}
- *     ListNode(int val) { this.val = val; }
- *     ListNode(int val, ListNode next) { this.val = val; this.next = next; }
- * }
- */
 class Solution {
     public int getDecimalValue(ListNode head) {
         List<Integer> list = new ArrayList<>();
@@ -28,3 +18,18 @@ class Solution {
         return num;
     }
 }
+
+Optimized solution:
+    class Solution {
+    public int getDecimalValue(ListNode head) {
+        int res = 0;
+        ListNode curr = head;
+
+        while (curr != null) {
+            res = (res * 2) + curr.val;  //important concept
+            curr = curr.next;
+        }
+        return res;
+    }
+}
+//we can also do this question with this method as well, here i observed the concept of binary number formation 
