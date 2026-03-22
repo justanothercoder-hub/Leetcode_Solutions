@@ -1,0 +1,46 @@
+class Solution {
+    public int[] intersect(int[] nums1, int[] nums2) {
+        HashMap<Integer, Integer> map = new HashMap<>(); 
+        HashMap<Integer, Integer> map1 = new HashMap<>();
+
+        int l1 = nums1.length; 
+        int l2 = nums2.length; 
+        int k = 0;
+        int p = 0;
+        
+        for(int i=0 ; i<l1; i++){
+            map.put(k,nums1[i]);
+            k++;
+        }
+
+        for(int m=0 ; m<l2; m++){
+            map1.put(p,nums2[m]);
+            p++; 
+        }
+
+        ArrayList<Integer> toDelete = new ArrayList<>();
+
+        for(int s : map.keySet()){
+            boolean f = false; 
+            
+            for(int j : map1.keySet()){ 
+                if(map.get(s).equals(map1.get(j))){
+                    f = true; 
+                    map1.remove(j); 
+                    break;          
+                }
+            }
+            
+            if(f == false){
+                toDelete.add(s);
+            }
+        } 
+
+        for(int s : toDelete){
+            map.remove(s);
+        }
+
+        int[] array = map.values().stream().mapToInt(Integer::intValue).toArray();
+        return array;
+    }
+}
