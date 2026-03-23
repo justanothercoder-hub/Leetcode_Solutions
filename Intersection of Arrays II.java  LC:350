@@ -44,3 +44,35 @@ class Solution {
         return array;
     }
 }
+
+OPTIMIZED SOLUTION:
+class Solution {
+    public int[] intersect(int[] nums1, int[] nums2) {
+
+        int[] arr1 = new int[1001];
+        int[] arr2 = new int[1001];
+
+        for(int i: nums1) arr1[i]++;
+        for(int i: nums2) arr2[i]++;
+
+        ArrayList<Integer> al = new ArrayList<>();
+
+        for(int i=0; i<arr1.length; i++) {
+            if(arr1[i] != 0 && arr2[i] != 0) {
+                int occ = Math.min(arr1[i], arr2[i]);
+                for(int j=0; j<occ; j++) {
+                    al.add(i);
+                }
+            }
+        }
+
+        int[] result = new int[al.size()];
+        for(int i=0; i<al.size(); i++) {
+            result[i] = al.get(i);
+        }
+
+        return result;
+    }
+}
+\\Here I used two arrays instead of hashmap to find the frequency of numbers and find the intersection of two arrays.
+
