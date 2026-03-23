@@ -1,0 +1,19 @@
+class Solution {
+    public List<String> fizzBuzz(int n) {
+        int[] arr = new int [n];
+        int l = arr.length;
+        int k=1;
+        List<String> list = new ArrayList<>();
+
+        for(int i = 0; i<l ; i++){
+
+             if (k%15 == 0){list.add("FizzBuzz");}
+             else if (k%5 == 0){list.add("Buzz");}
+             else if (k%3 == 0){list.add("Fizz");}
+             else{list.add(Integer.toString(k));}
+             k++;
+        }
+
+        return list;
+    }
+}
