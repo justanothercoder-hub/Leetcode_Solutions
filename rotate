@@ -1,0 +1,44 @@
+class Solution {
+    public void rotate(int[][] matrix) {
+        
+        int row = matrix.length;
+        int col = matrix[0].length;
+
+        boolean[][] isValid = new boolean[row][col];
+
+        for(int i=0; i<row; i++) {
+            for(int j=0; j<col; j++) {
+                int cell = matrix[i][j];
+                int rev = matrix[j][i];
+
+                if(isValid[i][j] == false && isValid[j][i] == false) {
+                    int temp = cell;
+                    matrix[i][j] = rev;
+                    matrix[j][i] = temp;
+
+                    isValid[i][j] = true;
+                    isValid[j][i] = true;
+
+                }
+            }
+        }
+
+        int ptr1 = 0;
+        int ptr2 = col-1;
+
+        while(ptr1 < ptr2) {
+            
+            int idx = 0;
+            while( idx < row ) {
+                int temp = matrix[idx][ptr1];
+                matrix[idx][ptr1] = matrix[idx][ptr2];
+                matrix[idx][ptr2] = temp;
+
+                idx++;
+            }
+
+            ptr1++;
+            ptr2--;
+        }
+    }
+}
